@@ -76,7 +76,7 @@ impute_LA <- function(ped.file, high.file, low.file, low.format="GT",
   fwrite(combo,"tmp/PO_geno.csv",na = "NA")
   
   #construct Julia script
-  con <- file("tmp/po.jl",open="write")
+  con <- file("tmp/po.jl",open="w")
   writeLines("using PolyOrigin;",con)
   writeLines(sub("X","tmp/PO_geno.csv","genofile=\"X\";"),con)
   writeLines(sub("X",ped.file,"pedfile=\"X\";"),con)
