@@ -80,9 +80,9 @@ impute_LA <- function(ped.file, high.file, low.file, low.format="GT",
   writeLines("using PolyOrigin;",con)
   writeLines(sub("X","tmp/PO_geno.csv","genofile=\"X\";"),con)
   writeLines(sub("X",ped.file,"pedfile=\"X\";"),con)
-  writeLines("polyOrigin(genofile,pedfile,isphysmap=false,refineorder=false,refinemap=false,outstem=\"tmp/imputed\");",con)
+  writeLines("polyOrigin(genofile,pedfile,isphysmap=false,refineorder=false,refinemap=false,correctthreshold=2.5,outstem=\"tmp/imputed\");",con)
   close(con)
-  system("julia --threads 4 tmp/po.jl")
+  system("julia --threads auto tmp/po.jl")
   
   imputed <- read.csv("tmp/imputed_postdoseprob.csv",check.names=F,as.is=T)
   cols <- colnames(geno)
